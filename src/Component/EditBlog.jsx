@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const EditBlog = (props) => {
   return (
@@ -6,7 +6,7 @@ const EditBlog = (props) => {
       <h1>{props.posttitle}</h1>
       <p>{props.postbody}</p>
     </div>
-  )
-}
+  );
+};
 
-export default EditBlog
+export default EditBlog;

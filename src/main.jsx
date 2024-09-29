@@ -2,17 +2,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { NextUIProvider } from "@nextui-org/react";
-import App from "./App";
-import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import "./index.css";
+import App from "./App";
 import Blogs from "./Component/Blogs";
 import Home from "./Component/Home";
 import Authors from "./Component/Authors";
-import ErrorPage from "./Component/ErrorPage";
+import ErrorPage from "./Component/Layout/ErrorPage";
 import Category from "./Component/Category";
 import MyPosts from "./Component/MyPosts";
-import SignUp from "./Component/SignUp";
-import LogIn from "./Component/LogIn";
+import SignUp from "./Component/SignupPages/SignUp";
+import LogIn from "./Component/SignupPages/LogIn";
+import Samp from "./Component/components/Samp";
+import CreatePost from "./Component/CreatePost";
+import Profile from "./Component/Profile";
+import Landingpage from "./Component/Landingpage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +29,10 @@ const router = createBrowserRouter([
          element: <Home />
       },
       {
+        path:'/category/:category',
+        element:<Home />
+      },
+      {
         path:'/blog/:id',
         element:<Blogs />
 
@@ -35,7 +43,12 @@ const router = createBrowserRouter([
       },{
         path:'/category',
         element:<Category />
-      },{
+      },
+      {
+        path:'/category/:id',
+        element:<Samp />
+      },
+      {
         path:'/myposts',
         element:<MyPosts />
       },{
@@ -44,6 +57,16 @@ const router = createBrowserRouter([
       },{
         path:'/login',
         element:<LogIn />
+      },{
+        path:'/createpost',
+        element:<CreatePost />
+      },
+      {
+        path:'/profile',
+        element:<Profile />
+      },{
+        path:'/hb',
+        element:<Landingpage />
       }
         
         ],
