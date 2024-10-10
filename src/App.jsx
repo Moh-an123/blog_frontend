@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-
 import Header from "./Component/Layout/Header";
 import Footer from "./Component/Layout/Footer";
 export default function App() {
   let f = false,
     c = { name: "", password: "", email: "", author_id: "" };
+
 
   if (localStorage.getItem("data")) {
     f = true;

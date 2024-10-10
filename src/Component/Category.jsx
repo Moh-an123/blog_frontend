@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import data2 from "../Json/Data.json";
 import axios  from "axios";
+import url from "../backendurl";
 const Category = () => {
   const [data, setData] = useState(data2);
 
@@ -40,7 +41,7 @@ const Category = () => {
  useEffect(()=>{
   const fetchdata=async()=>{
   try {
-    const response = await axios.get(`http://localhost:3003/blogdata/${category[0]}`);
+    const response = await axios.get(`${url}/blogdata/${category[0]}`);
     console.log(response.data);
     setData(response.data);
   } catch (error) {
@@ -53,7 +54,7 @@ fetchdata();
     console.log(d);
     setData();
     try {
-      const response = await axios.get(`http://localhost:3003/blogdata/${d}`);
+      const response = await axios.get(`${url}/blogdata/${d}`);
       console.log(response.data);
       setData(response.data);
     } catch (error) {

@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import axios from "axios";
+import url from "../../backendurl";
 const SignUp = () => {
   const [formdata, setFormdata] = useState({
     name: "",
@@ -28,7 +29,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3003/signup",
+        `${url}/signup`,
         formdata
       );
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input } from "@nextui-org/react";
 import axios from "axios";
+import url from "../backendurl";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -30,7 +31,7 @@ const CreatePost = () => {
     console.log(postData);
     try {
       const response = await axios.post(
-        "http://localhost:3003/createblog",
+        `${url}/createblog`,
         postData
       );
       console.log(response.data.message);

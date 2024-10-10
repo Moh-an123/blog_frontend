@@ -3,7 +3,7 @@ import Data from "../Json/Data.json";
 import img1 from "./../assets/medium3.jpg";
 import axios from "axios";
 import DisplayBlogs from "./DisplayBlogs";
-
+import url from "../backendurl";
 const MyPosts = () => {
   const [data, setData] = useState(Data);
   //  const handleUser=async()=>{
@@ -23,7 +23,7 @@ const MyPosts = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3003/getauthorpost/${value.author_id}`
+          `${url}/getauthorpost/${value.author_id}`
         );
         console.log(response.data);
         setData(response.data);

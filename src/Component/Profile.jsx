@@ -1,7 +1,7 @@
 import { AvatarIcon, Card, CardBody, CardHeader } from "@nextui-org/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import url from "../backendurl";
 const Profile = () => {
   const data = JSON.parse(localStorage.getItem("data"));
   const [Data, setData] = useState();
@@ -9,7 +9,7 @@ const Profile = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http:localhost:3003/getprofile/${data.author_id}`
+          `${url}/getprofile/${data.author_id}`
         );
         console.log(response.data);
 

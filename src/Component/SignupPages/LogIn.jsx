@@ -2,7 +2,7 @@ import { Button, Input } from "@nextui-org/react";
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-
+import url from "../../backendurl";
 const LogIn = () => {
   const navigate = useNavigate();
   const { Log, userData, setcheck, setLog } = useOutletContext();
@@ -42,7 +42,7 @@ const LogIn = () => {
         console.log(loginData);
 
         const response = await axios.post(
-          `http://localhost:3003/logindata`,
+          `${url}/logindata`,
           loginData
         );
         console.log(response.data.message);

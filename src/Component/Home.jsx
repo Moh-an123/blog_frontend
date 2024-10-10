@@ -3,6 +3,7 @@ import Displayblogs from "./DisplayBlogs";
 import { CircularProgress } from "@nextui-org/react";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
+import url from "../backendurl";
 function Home() {
   const { Log, userData, setcheck } = useOutletContext();
   console.log(userData);
@@ -16,7 +17,7 @@ function Home() {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/blogdata");
+        const response = await axios.get(`${url}/blogdata`);
         console.log(response.data);
         setData(response.data);
       } catch (error) {

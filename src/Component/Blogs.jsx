@@ -31,7 +31,7 @@ const Blogs = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3003/getdata/${id}`);
+        const response = await axios.get(`${url}/getdata/${id}`);
         console.log(response.data);
 
         setData(response.data);
