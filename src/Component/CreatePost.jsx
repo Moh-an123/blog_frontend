@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { Button, Input } from "@nextui-org/react";
 import axios from "axios";
 import url from "../backendurl";
+import { useOutletContext } from "react-router-dom";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
+  const { Log, userData, setcheck } = useOutletContext();
+
+// console.log(userData);
 
   const handleInput = (e) => {
     setContent(e.currentTarget.innerHTML);
@@ -26,6 +30,7 @@ const CreatePost = () => {
       post_body: content,
       category,
       image,
+      author_id:userData.author_id,
       date: new Date().toISOString(), // Current date
     };
     console.log(postData);
