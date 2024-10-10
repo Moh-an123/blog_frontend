@@ -1,17 +1,13 @@
 import React, { useCallback, useContext, useState } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
-// import CContext from "../components/CContext";
-import axios from 'axios'
+import axios from "axios";
 const SignUp = () => {
   const [formdata, setFormdata] = useState({
     name: "",
     email: "",
     password: "",
   });
-  const {Log,userData,setcheck}=useOutletContext();
-
-  // const { Log, user, setcheck } = useContext(CContext);
-  // console.log(Log, user);
+  const { Log, userData, setcheck } = useOutletContext();
 
   const handleChange = useCallback((e) => {
     // console.log("iam call back");
@@ -25,34 +21,31 @@ const SignUp = () => {
     console.log("i am useless");
   };
   const navigate = useNavigate();
-  const handleSubmit = async(e) => {
-      console.log("i am in submit");
-      e.preventDefault();
-      console.log(formdata);
-    
-      // setUserdata({name: 'mohan',
-      //   email: 'mohan@gmail.com',
-      //   password: 'mohan123@3',})
-    // try{
-    //    const response=axios.post('http://localhost:3003/signup',{formdata});
-    //    console.log(response);
-    // }catch(err){
-    //     console.log(err);
-    // }
-  try{
-    const response=await axios.post('http://localhost:3003/signup',formdata);
-    setcheck(formdata.name, formdata.password, formdata.email);
-       console.log(response.data);
-       setTimeout( ()=>{ navigate("/", { replace: true })},2000);
-    }catch(err){
-        console.log(err);
-  }
-   
-    }
-    // ,
-  //   [formdata, setcheck]
-  // );
+  const handleSubmit = async (e) => {
+    console.log("i am in submit");
+    e.preventDefault();
+    console.log(formdata);
 
+    try {
+      const response = await axios.post(
+        "http://localhost:3003/signup",
+        formdata
+      );
+
+      setcheck(
+        formdata.name,
+        formdata.password,
+        formdata.email,
+        response.data.author_id
+      );
+      console.log(response.data);
+      setTimeout(() => {
+        navigate("/", { replace: true });
+      }, 1000);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="py-10 px-20 flex justify-center items-center w-full">
       <form

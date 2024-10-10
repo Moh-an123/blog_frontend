@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import {
   Navbar,
   NavbarContent,
@@ -16,18 +16,14 @@ import Tabs from "../HeaderComponent/Tabs";
 import SignandLog from "../HeaderComponent/SignandLog";
 import DropDown from "../HeaderComponent/Dropdownitem";
 import { useOutletContext } from "react-router-dom";
-const Header = ({Log,user,setcheck}) => {
-  // const { Log, user, setLog } = useContext(CContext);
-  // const {Log,userData,setcheck}=useOutletContext();
-  // const {Log,user,setLog}=props;
-  const [islog, setIslog] = useState(Log|0);
+const Header = ({Log,user}) => {
+ const [islog, setIslog] = useState(Log|0);
   const [userData,setUserdata]=useState(user);
-  console.log(Log);
+ console.log(Log);
   // setIslog(Log)
   console.log(userData);
   console.log(islog);
- 
- 
+
   return (
     <>
       <Navbar
@@ -36,7 +32,7 @@ const Header = ({Log,user,setcheck}) => {
       >
         <Tabs />
         <NavbarContent as="div" className="items-center gap-10" justify="end">
-          <Searchbar />
+          {/* <Searchbar /> */}
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar

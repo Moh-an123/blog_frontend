@@ -1,17 +1,16 @@
 import { Button, Card, CardBody, CardHeader, Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
-
 import React, { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
-import images from "../assets/img6.jpg";
 import Data from "../Json/Data.json";
+import axios from "axios";
 const Blogs = () => {
   const { id } = useParams();
   console.log(Data.posts);
-  const [data, setData] = useState(Data.posts[id]);
+  const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState(images);
   console.log(id);
   // console.log(im);
   // useEffect(() => {
@@ -29,6 +28,19 @@ const Blogs = () => {
   //   fetchData(id);
   // }, []);
   // console.log(data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3003/getdata/${id}`);
+        console.log(response.data);
+
+        setData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
   if (loading)
     return <h1 className="h-dvh mx-auto text-center pt-60">Loading...</h1>;
   return (
@@ -66,7 +78,7 @@ const Blogs = () => {
             <div className="flex justify-center items-center">
               <Image
                 alt="image"
-                src={images}
+                src={data.image}
                 className=" min-w-full rounded-xl"
               />
             </div>

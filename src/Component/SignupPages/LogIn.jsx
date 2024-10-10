@@ -14,11 +14,6 @@ const LogIn = () => {
   console.log(userData1);
   let isUserLoggedIn = !!userData1;
 
-  // Redirect to signup if no user data found
-  // if (!isUserLoggedIn) {
-  //   navigate("/signup");
-  // }
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData((old) => ({
@@ -37,23 +32,46 @@ const LogIn = () => {
         data.email === loginData.name &&
         data.password === loginData.password)
     ) {
+      // console.log("11");
+
       setLog(true);
       setcheck("mohan", "a@gmail.com", "mohan");
       navigate("/");
     } else {
       try {
-        await axios
-          .get("http:localhost:3003/logindata", { loginData })
-          .then((res) => {
-            setServerData(res.json()).catch((err) => console.log(err));
-          });
+        console.log(loginData);
+
+        const response = await axios.post(
+          `http://localhost:3003/logindata`,
+          loginData
+        );
+        console.log(response.data.message);
+        console.log(response.data.op);
+        console.log(
+          response.data.message.name,
+          response.data.message.password,
+          response.data.message.email,
+          response.data.message.author_id
+        );
+
+        if (response.data.op) {
+          setLog(true);
+          setcheck(
+            response.data.message.name,
+            response.data.message.password,
+            response.data.message.email,
+            response.data.message.author_id
+          );
+          setServerData(true);
+          navigate("/");
+        }
       } catch {
-        alert("Incorrect username or password. Please try again.");
+        //alert("Incorrect username or password. Please try again.");
       }
       if (serverData) {
         navigate("/");
       } else {
-        alert("email or password mismatch");
+        //alert("email or password mismatch");
       }
     }
   };
