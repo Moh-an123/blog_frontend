@@ -1,2 +1,2 @@
-const url="http://localhost:3003"
+const url="https://blog-backend-rg2q.onrender.com"
 export default url;
